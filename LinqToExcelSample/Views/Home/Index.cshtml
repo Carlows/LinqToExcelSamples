@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model IEnumerable<LinqToExcelSample.Models.Alumno>
+@using LinqToExcelSample.Models
+
+<h2>File Upload</h2>
+@using (Html.BeginForm("Index",
+                        "Home",
+                        FormMethod.Post,
+                        new { enctype = "multipart/form-data" }))
+{
+    <label for="file">Upload File:</label>
+    <input type="file" name="file" id="file" /><br><br>
+    <input class="btn btn-success" type="submit" value="Upload" />
+}
+
+<br />
+<br />
+
+<div class="alert"><p>@ViewData["Message"]</p></div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Telefono</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Alumno al in Model)
+        {
+            <tr>
+                <td>@al.Nombre</td>
+                <td>@al.Apellido</td>
+                <td>@al.Email</td>
+                <td>@al.Telefono</td>
+            </tr>   
+        }
+    </tbody>
+</table>
+
+
